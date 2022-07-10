@@ -16,21 +16,29 @@ class Comments extends Component
 
 
     public function mount(){
+
         $initialComments = Comment::latest()->get();
+
         $this->comments = $initialComments;
     }
 
     public function updated($field){
+
         $this->validateOnly($field,[
             'newComment'=>'required|max:255'
         ]);
+
     }
 
     public function addComment(){
 
-        $this->validate(['newComment'=>'required']);
+        $this->validate(
+            ['newComment'=>'required']
+        );
 
-        $createdComment = Comment::create(['body'=>$this->newComment,'user_id'=> 1]);
+        $createdComment = Comment::create(
+            ['body'=>$this->newComment,
+            'user_id'=> 1]);
 
         $this->comments->prepend($createdComment);
 
