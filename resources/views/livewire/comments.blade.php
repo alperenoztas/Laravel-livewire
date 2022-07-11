@@ -35,5 +35,7 @@
 
         </div>
         @endforeach
+        {{ $comments->links() }}
+
     </div>
 </div>
